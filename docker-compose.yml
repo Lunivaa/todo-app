@@ -1,7 +1,9 @@
 services:
   flask:
     container_name: flask
-    image: luniva/todo-app-flask:v1
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
     ports:
       - 5000:5000
     depends_on:
@@ -9,7 +11,9 @@ services:
 
   db:
     container_name: db
-    image: luniva/todo-app-db:v1
+    build:
+      context: .
+      dockerfile: Dockerfile.db
     environment:
       - MYSQL_ROOT_PASSWORD=password
     volumes:
