@@ -1,0 +1,19 @@
+services:
+  flask:
+    container_name: flask
+    image: luniva/todo-app-flask:v1
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: luniva/todo-app-db:v1
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
